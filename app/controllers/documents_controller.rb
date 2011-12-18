@@ -16,15 +16,6 @@ class DocumentsController < ApplicationController
     respond_with(@document)
   end
 
-  def new
-    @document = Document.new
-    respond_with(@document)
-  end
-
-  def edit
-    @document = Document.find(params[:id])
-  end
-
   def create
     @document = Document.new(params[:document])
     @document.save
@@ -33,6 +24,9 @@ class DocumentsController < ApplicationController
 
   def update
     @document = Document.find(params[:id])
+    params[:document].delete(:id)
+    params[:document].delete(:created_at)
+    params[:document].delete(:updated_at)
     @document.update_attributes(params[:document])
     respond_with(@document)
   end
