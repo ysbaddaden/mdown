@@ -44,10 +44,6 @@ module Mdown
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
-    config.assets.paths = [
-      Rails.root.join("app", "assets").to_s,
-      Rails.root.join("lib", "assets").to_s,
-      Rails.root.join("vendor", "assets").to_s
-    ]
+    config.assets.paths += %W{#{config.root}/lib/assets #{config.root}/vendor/assets }
   end
 end
