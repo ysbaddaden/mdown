@@ -19,6 +19,14 @@ var Document = Backbone.Model.extend({
     });
   },
 
+  url: function () {
+    if (this.isNew()) {
+      return "/documents.json";
+    } else {
+      return "/documents/" + this.get("id") + ".json";
+    }
+  },
+
   preview: function () {
     if (!this._preview) {
       this._preview = new Preview({ model: this });

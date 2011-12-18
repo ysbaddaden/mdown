@@ -2,7 +2,9 @@ var TreeItem = Backbone.View.extend({
   tagName: "dd",
 
   events: {
-    "click": "open"
+    "click": "open",
+    "dblclick": "rename",
+    "click .destroy": "destroyDocument"
   },
 
   initialize: function () {
@@ -17,8 +19,9 @@ var TreeItem = Backbone.View.extend({
 
   render: function () {
     this.el.innerHTML = this.model.get("name");
+    this.el.innerHTML += '<span class="icon destroy">⊗</span>';
     if (!this.el.parentNode) {
-      tree.push(this.el);
+      tree.push(this);
     }
     return this;
   },
@@ -33,6 +36,31 @@ var TreeItem = Backbone.View.extend({
     this.model.set({ "selected": true });
     editor.model = this.model;
     editor.render();
+  },
+
+  rename: function (event) {
+    this.el.classList.add("renaming");
+    this.el.contentEditable = true;
+    
+    this.el.addEventListener("keydown", function (event) {
+      switch (event.keyCode) {
+      case 13: // Enter
+        this.el.classList.remove("renaming");
+        this.el.contentEditable = false;
+        this.model.save({ name: this.el.innerText || this.el.textContent });
+        break;
+      case 27: // ESC
+        this.el.classList.remove("renaming");
+        this.el.contentEditable = false;
+        break;
+      }
+    }.bind(this), false);
+    
+    this.el.focus();
+  },
+
+  destroyDocument: function (event) {
+    this.model.destroy();
+    this.remove();
   }
 });
-

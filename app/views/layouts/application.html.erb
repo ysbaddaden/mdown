@@ -2,7 +2,8 @@
 <html>
 <head>
   <title>Markdown Editor</title>
-  <%= stylesheet_link_tag "application" %>
+  <%= stylesheet_link_tag "application", :media => "screen" %>
+  <%= stylesheet_link_tag "print",       :media => "print" %>
   <%= csrf_meta_tags %>
 </head>
 <body>

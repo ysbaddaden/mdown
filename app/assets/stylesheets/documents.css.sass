@@ -1,4 +1,10 @@
+$base-font-size: 14px
+$base-line-height: $base-font-size * 1.5
+$sans-family: "Lucida Grande", verdana, sans-serif
+$mono-family: "Ubuntu Mono", Monaco, "Lucida Console", monospace
+
 @import "compass"
+@import "fico"
 
 $blue: #3f78c5
 
@@ -32,6 +38,7 @@ body
     size: $smaller-font-size
     weight: bold
   dt
+    padding: 0 $base-margin
     font-weight: bold
     color: #87919b
     text-transform: uppercase
@@ -40,6 +47,27 @@ body
     cursor: pointer
     color: #646464
   .selected
+    background: $blue
+    color: #FFF
+    +text-shadow(0 1px 0 #646464)
+  .renaming
+    background: #FFF !important
+    color: #333 !important
+    +text-shadow(none !important)
+    +box-shadow(inset 1px 1px 1px #888 !important)
+    .icon
+      visibility: hidden !important
+  .icon
+    float: right
+    cursor: pointer
+    color: #87919b
+  dd .icon
+    visibility: hidden
+  dd:hover
+    background: #D4D4D4
+    .icon
+      visibility: visible
+  .selected:hover, .selected:hover .icon
     background: $blue
     color: #FFF
     +text-shadow(0 1px 0 #646464)
@@ -64,39 +92,5 @@ body
 #preview
   width: 50%
   overflow: auto
-  h1, h2, h3, h4, h5, h6, p, dl, ul, ol, table, pre
-    margin: 0 0 $base-line-height
-  h1, h2, h3, h4, h5, h6
-    font-weight: bold
-  h1, h2, h3
-    font-family: Georgia, serif
-  h1
-    font-size:   $base-font-size * 3
-    line-height: $base-line-height * 2
-  h2
-    font-size:   $base-font-size * 2
-    line-height: $base-line-height * 2
-  h3
-    font-size:   $base-font-size * 1.5
-  blockquote
-    margin: 0 $base-line-height * 2 $base-line-height
-    border-left: $base-margin solid #EEE
-    padding-left: $base-margin
-  em, i
-    font-style: italic
-  strong, b
-    font-weight: bold
-  ul
-    list-style: square
-    padding-left: $base-line-height
-  ul > ul, ul > ol, ol > ol, ol > ul
-    margin-bottom: 0
-  pre, code
-    font-family: $mono-family
-  pre > code
-    display: block
-    margin: 0 $base-line-height $base-line-height
-    padding: $base-line-height
-    color: #f6f3e8
-    background: #242424
+  @import preview
 

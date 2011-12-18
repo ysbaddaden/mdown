@@ -1,0 +1,23 @@
+$base-font-size: 16px
+$base-line-height: $base-font-size * 1.25
+$sans-family: "Lucida Grande", verdana, sans-serif
+$mono-family: "Ubuntu Mono", Monaco, "Lucida Console", monospace
+
+@import "compass"
+@import "preview"
+
+body
+  margin: $base-line-height * 3
+  background-color: #FFF
+  color: #000
+
+#header, #sidebar, #editor
+  display: none
+
+code
+  font-size: $smaller-font-size
+pre > code
+  font-size: $base-font-size
+  padding: 0
+  background-color: transparent
+

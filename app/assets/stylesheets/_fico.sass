@@ -1,0 +1,14 @@
+@font-face
+  font-family: fico
+  font-weight: normal
+  font-style:  normal
+  src: image-url('fonts/fico.eot')
+  src: image-url('fonts/fico.eot?#iefix') format('embedded-opentype'), image-url('fonts/fico.ttf') format('truetype'), image-url('fonts/fico.svg#Fico') format('svg')
+
+.icon
+  font-family: fico
+
+[data-icon]:before
+  content: attr(data-icon)
+  font-family: fico
+
