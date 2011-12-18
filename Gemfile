@@ -5,6 +5,7 @@ gem 'sqlite3'
 
 group :assets do
   gem 'sass-rails', '~> 3.1.5'
+  gem 'compass',    '~> 0.12.alpha'
   gem 'uglifier',   '>= 1.0.3'
 end
 

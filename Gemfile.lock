@@ -32,9 +32,15 @@ GEM
     ansi (1.4.1)
     arel (2.2.1)
     builder (3.0.0)
+    chunky_png (1.2.5)
+    compass (0.12.alpha.2)
+      chunky_png (~> 1.2)
+      fssm (>= 0.2.7)
+      sass (~> 3.1)
     erubis (2.7.0)
     execjs (1.2.12)
       multi_json (~> 1.0)
+    fssm (0.2.7)
     hike (1.2.1)
     i18n (0.6.0)
     json (1.6.3)
@@ -99,6 +105,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  compass (~> 0.12.alpha)
   rails (~> 3.1.3)
   sass-rails (~> 3.1.5)
   sqlite3

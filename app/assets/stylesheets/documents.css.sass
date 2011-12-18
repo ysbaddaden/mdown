@@ -1,0 +1,102 @@
+@import "compass"
+
+$blue: #3f78c5
+
+body
+  font-family: $sans-family
+  background: #E4E4E4
+
+#main
+  +clearfix
+  color: #333
+
+#header
+  display: none
+//#header h1
+//  font:
+//    family: $sans-family
+//    weight: bold
+//  padding: 0 $base-margin
+//  color: #87919b
+//  +text-shadow(0 1px 0 #FFF)
+
+#sidebar, #editor, #preview
+  +box-sizing(border-box)
+  padding: $base-margin
+  float: left
+
+#sidebar
+  width: 16.041666666666668%
+  margin: $base-margin 0 0 0
+  font:
+    size: $smaller-font-size
+    weight: bold
+  dt
+    font-weight: bold
+    color: #87919b
+    text-transform: uppercase
+  dd
+    padding: 0 $base-margin
+    cursor: pointer
+    color: #646464
+  .selected
+    background: $blue
+    color: #FFF
+    +text-shadow(0 1px 0 #646464)
+
+#document
+  +clearfix
+  +border-radius(6px)
+  +box-shadow(inset 0 0 $base-margin #BBB)
+  background: #FFF
+  margin: $base-margin 0 0 $base-margin
+  border: 1px solid #CCC
+
+#editor
+  width: 50%
+  font:
+    family: $mono-family
+    size: $bigger-font-size
+  outline: none
+  background: transparent
+  border-right: 1px solid #CCC
+
+#preview
+  width: 50%
+  overflow: auto
+  h1, h2, h3, h4, h5, h6, p, dl, ul, ol, table, pre
+    margin: 0 0 $base-line-height
+  h1, h2, h3, h4, h5, h6
+    font-weight: bold
+  h1, h2, h3
+    font-family: Georgia, serif
+  h1
+    font-size:   $base-font-size * 3
+    line-height: $base-line-height * 2
+  h2
+    font-size:   $base-font-size * 2
+    line-height: $base-line-height * 2
+  h3
+    font-size:   $base-font-size * 1.5
+  blockquote
+    margin: 0 $base-line-height * 2 $base-line-height
+    border-left: $base-margin solid #EEE
+    padding-left: $base-margin
+  em, i
+    font-style: italic
+  strong, b
+    font-weight: bold
+  ul
+    list-style: square
+    padding-left: $base-line-height
+  ul > ul, ul > ol, ol > ol, ol > ul
+    margin-bottom: 0
+  pre, code
+    font-family: $mono-family
+  pre > code
+    display: block
+    margin: 0 $base-line-height $base-line-height
+    padding: $base-line-height
+    color: #f6f3e8
+    background: #242424
+
