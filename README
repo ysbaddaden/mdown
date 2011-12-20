@@ -2,10 +2,7 @@
 
 === TODO
 
-* Rename a document (dblclick document's name) + remote save.
-* Remotely save a document (Ctrl+s).
 * Close a document (Ctrl+w).
-* Create a new document (???).
 
 * Save documents in (unested) Folders.
 * Have documents saved as files on server(?)
@@ -16,5 +13,4 @@
 * Check if document wasn't updated remotely before loading from LocalStorage.
 
 * Highlight markdown code in some way (bold titles, indented lists and blockquotes line breaks, etc).
-* Keep a logical scroll between the editor and the preview.
 

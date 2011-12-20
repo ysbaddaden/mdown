@@ -11,13 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111216145938) do
+ActiveRecord::Schema.define(:version => 20111219173253) do
 
   create_table "documents", :force => true do |t|
     t.string   "name"
     t.text     "contents"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "rev",        :default => 1
   end
 
   add_index "documents", ["name"], :name => "index_documents_on_name"

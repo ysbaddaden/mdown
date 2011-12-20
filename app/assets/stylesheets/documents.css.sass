@@ -55,12 +55,16 @@ body
     color: #333 !important
     +text-shadow(none !important)
     +box-shadow(inset 1px 1px 1px #888 !important)
+    .name
+      display: block
     .icon
-      visibility: hidden !important
+      display: none !important
   .icon
     float: right
     cursor: pointer
     color: #87919b
+  .icon:hover
+    color: #333
   dd .icon
     visibility: hidden
   dd:hover

@@ -4,4 +4,6 @@ class Document < ActiveRecord::Base
   }
   scope :latest, order("documents.updated_at DESC, documents.name ASC")
   scope :alphabetical, order("documents.name ASC")
+
+  before_update ->(document) { document.rev += 1 }
 end

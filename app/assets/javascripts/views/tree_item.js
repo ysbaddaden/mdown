@@ -4,22 +4,21 @@ var TreeItem = Backbone.View.extend({
   events: {
     "click": "open",
     "dblclick": "rename",
-    "click .destroy": "destroyDocument"
+    "click .destroy": "destroy"
   },
 
   initialize: function () {
     this.model.bind("change:selected", function (model, value) {
-      if (value) {
-        this.el.className = "selected";
-      } else {
-        this.el.className = "";
-      }
+      var method = (value) ? "add" : "remove";
+      this.el.classList[method]("selected");
     }, this);
   },
 
   render: function () {
-    this.el.innerHTML = this.model.get("name");
-    this.el.innerHTML += '<span class="icon destroy">⊗</span>';
+    this.el.innerHTML = '<span class="name">' + this.model.escape("name") + '</span> ' +
+      '<span class="icon destroy">⊗</span>';
+    this.span = this.el.getElementsByTagName("span").item(0);
+    
     if (!this.el.parentNode) {
       tree.push(this);
     }
@@ -30,37 +29,38 @@ var TreeItem = Backbone.View.extend({
     if (this.model.get("selected")) {
       return;
     }
-    if (editor.model) {
-      editor.model.set({ "selected": false });
-    }
-    this.model.set({ "selected": true });
-    editor.model = this.model;
-    editor.render();
+    editor.open(this.model);
   },
 
   rename: function (event) {
     this.el.classList.add("renaming");
-    this.el.contentEditable = true;
+    this.span.contentEditable = true;
     
-    this.el.addEventListener("keydown", function (event) {
+    this.span.addEventListener("blur", this.cancelRename.bind(this), false);
+    this.span.addEventListener("keydown", function (event) {
       switch (event.keyCode) {
       case 13: // Enter
-        this.el.classList.remove("renaming");
-        this.el.contentEditable = false;
-        this.model.save({ name: this.el.innerText || this.el.textContent });
+        this.cancelRename();
+        this.model.save({ name: this.span.innerText || this.span.textContent });
         break;
       case 27: // ESC
-        this.el.classList.remove("renaming");
-        this.el.contentEditable = false;
+        this.cancelRename();
         break;
       }
     }.bind(this), false);
     
-    this.el.focus();
+    this.span.focus();
   },
 
-  destroyDocument: function (event) {
-    this.model.destroy();
-    this.remove();
+  cancelRename: function () {
+    this.el.classList.remove("renaming");
+    this.span.contentEditable = false;
+  },
+
+  destroy: function (event) {
+    if (confirm('Are you sure you want to destroy "' + this.model.escape("name") + '" ?')) {
+      this.model.destroy();
+      this.remove();
+    }
   }
 });

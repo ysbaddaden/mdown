@@ -10,12 +10,10 @@ var Tree = Backbone.View.extend({
   },
 
   createDocument: function (event) {
-    var model = new Document();
+    var model = new Document({ name: "Sans titre..." });
     this.push(model.treeItem);
     model.treeItem.open();
     model.treeItem.rename();
   }
 });
-
-var tree = new Tree();
 

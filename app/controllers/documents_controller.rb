@@ -1,5 +1,6 @@
 class DocumentsController < ApplicationController
   respond_to :json
+  before_filter :clean_params, :only => [ :create, :update ]
 
   def index
     @documents = Document.alphabetical
@@ -24,11 +25,21 @@ class DocumentsController < ApplicationController
 
   def update
     @document = Document.find(params[:id])
-    params[:document].delete(:id)
-    params[:document].delete(:created_at)
-    params[:document].delete(:updated_at)
-    @document.update_attributes(params[:document])
-    respond_with(@document)
+    
+    if @document.rev == rev = params[:document].delete(:rev).to_i
+      @document.update_attributes(params[:document])
+    else
+      @document.errors.add(:rev, "This document has already been saved by somebody else.")
+    end
+    
+    respond_with(@document) do |format|
+      format.json do
+        if @document.persisted?
+          hsh = { rev: @document.rev, updated_at: @document.updated_at }
+          render request.format.to_sym => hsh, :status => :ok
+        end
+      end
+    end
   end
 
   def destroy
@@ -36,4 +47,9 @@ class DocumentsController < ApplicationController
     @document.destroy
     respond_with(@document)
   end
+
+  private
+    def clean_params
+      [ :id, :created_at, :updated_at ].each { |key| params[:document].delete(key) }
+    end
 end
