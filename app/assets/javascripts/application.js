@@ -8,6 +8,5 @@
 
 //= require "documents"
 
-var docs = new Documents();
-docs.fetch();
+Documents.fetch({ add: true });
 

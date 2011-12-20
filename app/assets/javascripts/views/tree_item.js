@@ -1,6 +1,11 @@
 var TreeItem = Backbone.View.extend({
   tagName: "dd",
 
+  templates: {
+    "render": '<span class="name"><%- name %></span> <span class="icon destroy">⊗</span>',
+    "confirmDestroy": 'Are you sure you want to destroy "<%- name %>" ?'
+  },
+
   events: {
     "click": "open",
     "dblclick": "rename",
@@ -15,13 +20,8 @@ var TreeItem = Backbone.View.extend({
   },
 
   render: function () {
-    this.el.innerHTML = '<span class="name">' + this.model.escape("name") + '</span> ' +
-      '<span class="icon destroy">⊗</span>';
+    this.el.innerHTML = _.template(this.templates.render, { name: this.model.get("name") });
     this.span = this.el.getElementsByTagName("span").item(0);
-    
-    if (!this.el.parentNode) {
-      tree.push(this);
-    }
     return this;
   },
 
@@ -36,20 +36,20 @@ var TreeItem = Backbone.View.extend({
     this.el.classList.add("renaming");
     this.span.contentEditable = true;
     
-    this.span.addEventListener("blur", this.cancelRename.bind(this), false);
+    this.span.addEventListener("blur", this.doRename.bind(this), false);
     this.span.addEventListener("keydown", function (event) {
       switch (event.keyCode) {
-      case 13: // Enter
-        this.cancelRename();
-        this.model.save({ name: this.span.innerText || this.span.textContent });
-        break;
-      case 27: // ESC
-        this.cancelRename();
-        break;
+      case 13: this.doRename();     break; // Enter
+      case 27: this.cancelRename(); break; // Esc
       }
     }.bind(this), false);
     
     this.span.focus();
+  },
+
+  doRename: function () {
+    this.cancelRename();
+    this.model.set({ name: this.span.innerText || this.span.textContent });
   },
 
   cancelRename: function () {
@@ -58,9 +58,8 @@ var TreeItem = Backbone.View.extend({
   },
 
   destroy: function (event) {
-    if (confirm('Are you sure you want to destroy "' + this.model.escape("name") + '" ?')) {
+    if (confirm(_.template(this.templates.confirmDestroy, { name: this.model.get("name") }))) {
       this.model.destroy();
-      this.remove();
     }
   }
 });

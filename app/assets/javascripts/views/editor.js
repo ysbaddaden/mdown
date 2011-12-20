@@ -32,7 +32,7 @@ var Editor = Backbone.View.extend({
     this.render();
   },
 
-  close: function (event) {
+  close: function () {
     if (this.model) {
       this.model.set({ "selected": false });
     }

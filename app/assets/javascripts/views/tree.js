@@ -6,12 +6,12 @@ var Tree = Backbone.View.extend({
   },
 
   push: function (item) {
-    this.el.appendChild(item.el);
+    this.el.appendChild(item.render().el);
   },
 
   createDocument: function (event) {
     var model = new Document({ name: "Sans titre..." });
-    this.push(model.treeItem);
+    Documents.add(model);
     model.treeItem.open();
     model.treeItem.rename();
   }
