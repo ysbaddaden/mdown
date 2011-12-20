@@ -7,6 +7,5 @@
 //= include "auto_scroll"
 
 //= require "documents"
-
 Documents.fetch({ add: true });
 
