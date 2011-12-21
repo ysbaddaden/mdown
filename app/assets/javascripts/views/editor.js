@@ -1,4 +1,4 @@
-var Editor = Backbone.View.extend({
+var Editor = new (Backbone.View.extend({
   el: document.getElementById("editor"),
 
   events: {
@@ -7,6 +7,13 @@ var Editor = Backbone.View.extend({
 
   initialize: function () {
     this.el.disabled = true;
+    
+    document.body.addEventListener('keydown', function (event) {
+      if (event.ctrlKey && event.keyCode === 83) { // Ctrl+s
+        event.preventDefault();
+        Editor.save();
+      }
+    }, false);
   },
 
   render: function () {
@@ -38,6 +45,11 @@ var Editor = Backbone.View.extend({
     }
     this.model = undefined;
     this.render();
-  }
-});
+  },
 
+  save: function () {
+    if (this.model) {
+      this.model.save();
+    }
+  }
+}));

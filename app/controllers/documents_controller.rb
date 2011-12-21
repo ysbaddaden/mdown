@@ -3,11 +3,21 @@ class DocumentsController < ApplicationController
   before_filter :clean_params, :only => [ :create, :update ]
 
   def index
-    @documents = Document.alphabetical
+    if params[:folder_id]
+      @documents = Folder.find(params[:folder_id]).documents
+    else
+      @documents = Document
+    end
+    @documents = @documents.alphabetical
     respond_with(@documents)
   end
 
   def autocomplete
+    if params[:folder_id]
+      @documents = Folder.find(params[:folder_id]).documents
+    else
+      @documents = Document
+    end
     @documents = Document.autocomplete(params[:name]).latest
     respond_with(@documents)
   end

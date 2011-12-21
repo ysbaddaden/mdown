@@ -5,7 +5,11 @@
 
 //= include "auto_height"
 //= include "auto_scroll"
+//= require "rename_helper"
 
-//= require "documents"
-Documents.fetch({ add: true });
+//= require_tree "./models"
+//= require_tree "./views"
+//= require_tree "./collections"
+
+FolderList.fetch({ add: true });
 

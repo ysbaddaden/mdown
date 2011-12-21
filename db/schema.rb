@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111219173253) do
+ActiveRecord::Schema.define(:version => 20111220182540) do
 
   create_table "documents", :force => true do |t|
     t.string   "name"
@@ -19,8 +19,16 @@ ActiveRecord::Schema.define(:version => 20111219173253) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "rev",        :default => 1
+    t.integer  "folder_id"
   end
 
+  add_index "documents", ["folder_id"], :name => "index_documents_on_folder_id"
   add_index "documents", ["name"], :name => "index_documents_on_name"
+
+  create_table "folders", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end
