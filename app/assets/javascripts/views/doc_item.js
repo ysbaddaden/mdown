@@ -21,8 +21,8 @@ var DocItem = Backbone.View.extend({
 
   render: function () {
     this.el.innerHTML = _.template(this.template, { name: this.model.get("name") });
-    this.el.draggable = true;
     
+    this.el.draggable = true;
     this.el.addEventListener("dragstart", function (e) {
       e.dataTransfer.effectAllowed = "copy";
       e.dataTransfer.setData('Text', this.model.cid);
