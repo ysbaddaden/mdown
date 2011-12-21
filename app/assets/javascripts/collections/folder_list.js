@@ -10,13 +10,13 @@ FolderList.bind('add', function (folder) {
   folder.documents = new DocumentList();
   folder.documents.folder = folder;
   
-//  if (folder.has("documents")) {
+  if (folder.has("documents")) {
     folder.documents.add(folder.get('documents'));
     folder.unset("documents", { silent: true });
-//  } else {
+//  } else if (!folder.isNew()) {
 //    folder.documents.url = folder.url() + "/documents";
 //    folder.documents.fetch();
-//  }
+  }
 });
 
 FolderList.bind('change:name', function (folder) {

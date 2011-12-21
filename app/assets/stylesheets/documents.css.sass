@@ -31,6 +31,19 @@ body
   padding: $base-margin
   float: left
 
+#toolbar
+  margin-bottom: $base-line-height
+  .button
+    text-transform: lowercase
+    font-family: $sans-family
+    color: #87919b
+    cursor: pointer
+    span
+      font-family: fico
+      margin-right: $base-margin
+  .button:hover
+    color: #333
+
 #sidebar
   width: 16.041666666666668%
   margin: $base-margin 0 0 0
@@ -41,7 +54,12 @@ body
     padding: 0 $base-margin
     font-weight: bold
     color: #87919b
-    //text-transform: uppercase
+  dl
+    margin-bottom: $base-line-height
+  dl dt .icon
+    visibility: hidden
+  dl:hover dt .icon
+    visibility: visible
   dd
     padding: 0 $base-margin
     cursor: pointer
@@ -67,7 +85,7 @@ body
   .icon:hover
     color: #333
   .icon + .icon
-    margin-right: $base-margin * 2
+    margin-right: $base-margin
   dd .icon
     visibility: hidden
   dd:hover
