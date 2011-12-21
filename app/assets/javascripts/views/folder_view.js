@@ -4,8 +4,8 @@ var FolderView = Backbone.View.extend({
 
   template: '<dt>' +
       '<span class="name"><%- name %></span> ' +
-      '<span class="icon destroy">⊗</span>' +
-      '<span class="icon create">⊕</span>' +
+      '<span class="icon destroy">×</span>' +
+      '<span class="icon create">+</span>' +
     '</dt>',
   confirmTemplate: 'Are you sure you want to permanently delete "<%- name %>"?',
 

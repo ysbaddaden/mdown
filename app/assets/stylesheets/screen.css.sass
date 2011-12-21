@@ -1,0 +1,98 @@
+$base-font-size: 12px
+$base-line-height: $base-font-size * 1.5
+
+$sans-family: "Lucida Grande", verdana, sans-serif
+$mono-family: "Ubuntu Mono", Monaco, "Lucida Console", monospace
+
+$blueprint_grid_columns: 12
+$blueprint_grid_width: 6.333%
+$blueprint_grid_margin: 2%
+
+$blue: #3f78c5
+
+@import "compass"
+@import "blueprint"
+@import "fico"
+
+body
+  font:
+    family: $sans-family
+  color: #333
+  background: #F4F4F4
+
+html, body
+  height: 100%
+
+#main
+  +clearfix
+  +box-sizing(border-box)
+  _height: 100% // IE6 hack
+  min-height: 100%
+  margin: 0 1%
+
+#header
+  line-height: $base-line-height * 2
+  font:
+    family: $sans-family
+    weight: bold
+
+#sidebar
+  width: 16% // columns: 2
+  margin-right: 1%
+  float: left
+  cursor: default
+  .icon
+    font-size: $smaller-font-size
+  dl
+    margin-bottom: $base-line-height
+  dt, dd
+    padding: 0 $base-margin
+    position: relative
+    .icon
+      color: #AAA
+      position: absolute
+      top: 0
+      right: $base-margin
+    .icon:hover
+      color: #666
+    .icon + .icon
+      right: $base-line-height
+  .selected
+    background: $blue
+    color: #FFF
+    .icon
+      color: #FFF
+  dt
+    font-weight: bold
+
+#toolbar
+  line-height: $base-line-height * 2
+  margin-bottom: $base-line-height - 1px
+  border-bottom: 1px solid #FFF
+  .button
+    display: inline-block
+    color: #666
+  .button:hover
+    color: #333
+
+#document
+  display: inline
+
+#editor, #preview
+  +box-sizing(border-box)
+  width: 41% // columns: 5
+  float: left
+  overflow: auto
+  background: #FFF
+  font-size: 16px
+  padding: $base-margin
+  +box-shadow(inset 0 0 $base-margin #CCC)
+  +border-radius($base-margin)
+
+#editor
+  font-family: $mono-family
+  margin-right: 1%
+
+#preview
+  @import "preview"
+

@@ -1,6 +1,6 @@
 var DocItem = Backbone.View.extend({
   tagName: "dd",
-  template: '<span class="name"><%- name %></span> <span class="icon destroy">⊗</span>',
+  template: '<span class="name"><%- name %></span> <span class="icon destroy">×</span>',
   confirmTemplate: 'Are you sure you want to permanently delete "<%- name %>"?',
 
   events: {
