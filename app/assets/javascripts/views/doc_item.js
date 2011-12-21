@@ -1,5 +1,6 @@
 var DocItem = Backbone.View.extend({
   tagName: "dd",
+
   template: '<span class="name"><%- name %></span> <span class="icon destroy">×</span>',
   confirmTemplate: 'Are you sure you want to permanently delete "<%- name %>"?',
 
@@ -20,6 +21,15 @@ var DocItem = Backbone.View.extend({
 
   render: function () {
     this.el.innerHTML = _.template(this.template, { name: this.model.get("name") });
+    this.el.draggable = true;
+    
+    this.el.addEventListener("dragstart", function (e) {
+      e.dataTransfer.effectAllowed = "copy";
+      e.dataTransfer.setData('Text', this.model.cid);
+      this.el.setAttribute("data-cid", this.model.cid);
+      this.el.view = this;
+    }.bind(this), false);
+    
     this.span = this.el.querySelector("span.name");
     return this;
   },
