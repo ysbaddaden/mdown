@@ -23,9 +23,10 @@ role :web, "ns306322.ovh.net"
 role :app, "ns306322.ovh.net"
 role :db,  "ns306322.ovh.net", :primary => true
 
-#after 'deploy:update_code' do
+after 'deploy:update_code' do
 #  run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
-#end
+  run "ln -nfs #{shared_path}/db/*.sqlite3 #{release_path}/db"
+end
 
 namespace :deploy do
   desc "Starts the thin server"
