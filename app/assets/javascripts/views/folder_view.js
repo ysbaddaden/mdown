@@ -53,9 +53,9 @@ var FolderView = Backbone.View.extend({
       this.el.classList.remove("dragover");
       
       var el = document.querySelector("[data-cid=" + e.dataTransfer.getData('Text') + "]");
-      el.removeAttribute("data-cid", this.model.cid);
+      el.removeAttribute("data-cid");
       el.view.remove();
-      el.view.model.save({ folder_id: this.model.id })
+      el.view.model.save({ folder_id: this.model.id });
       this.addDocItem(el.view);
     }.bind(this), false);
     

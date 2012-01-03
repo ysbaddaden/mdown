@@ -14,6 +14,6 @@ var DocumentList = Backbone.Collection.extend({
       delete document.view;
       delete document;
     });
-  },
+  }
 });
 

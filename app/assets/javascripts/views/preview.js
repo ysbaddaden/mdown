@@ -11,7 +11,7 @@ var Preview = new (Backbone.View.extend({
 
   open: function (model) {
     this.model = model;
-    this.model.bind("change:contents", this.render, this)
+    this.model.bind("change:contents", this.render, this);
     this.render();
   },
 
