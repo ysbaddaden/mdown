@@ -47,6 +47,6 @@ module Mdown
     config.assets.paths += %W{#{config.root}/lib/assets #{config.root}/vendor/assets }
 
     config.assets.precompile += [ "screen.css", "print.css" ]
-    config.sass.preferred_syntax = :sass
+    config.sass.preferred_syntax = :sass if config.respond_to? :sass
   end
 end
